@@ -9,15 +9,16 @@ class DatabaseManager:
         self.password = password
         self.host = host
         self.port = port
-        self.pool = pool.SimpleConnectionPool(
-            minconn=1, maxconn=pool_size,
-            dbname=self.dbname, user=self.user,
-            password=self.password, host=self.host,
-            port=self.port
-        )
+        self.pool = None
 
     def get_connection(self):
         try:
+            self.pool = pool.SimpleConnectionPool(
+                minconn=1, maxconn=self.pool_size,
+                dbname=self.dbname, user=self.user,
+                password=self.password, host=self.host,
+                port=self.port
+            )
             return self.pool.getconn()
         except psycopg2.Error as e:
             print("Error connecting to database:", e)
@@ -30,7 +31,7 @@ class DatabaseManager:
             print("Error closing database connection:", e)
             raise
 
-    def execute_query(self, query, params=None, fetch=True):
+    def execute_query(self, query, params=None, fetch=False):
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
@@ -75,9 +76,8 @@ class DatabaseManager:
             self.close_connection(conn)
 
 
-# customer = DatabaseManager('finance', 'postgres', '@bb@s1366')
+customer = DatabaseManager('finance', 'postgres', '@bb@s1366')
 # customer.get_connection()
 # customer.execute_query('''INSERT INTO finance(type, date, amount, category, description)
 #                         VALUES (%s,%s,%s,%s,%s)''', ("income", "2023-04-21", 1000000, "sale", "phone"), False)
-
 # customer.execute_query('''DELETE FROM finance WHERE amount = 950000''', fetch=False)
