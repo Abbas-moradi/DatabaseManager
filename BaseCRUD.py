@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class BaseModel(ABC):
+class BaseCrud(ABC):
     @abstractmethod
     def create(self):
         pass

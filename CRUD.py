@@ -1,19 +1,39 @@
-from BaseModel import BaseModel
+from abc import ABC
+
+from BaseCRUD import BaseCrud
+from DBmanager import DatabaseManager
 
 
-class Person(BaseModel):
-    def __init__(self, type=None, date=None, amount=None, category=None, description=None):
-        self.type = type
-        self.date = date
-        self.amount = amount
-        self.category = category
-        self. description = description
+class Model:
+    table_name = None
+    columns = {}
 
-    def create(self):
-        query = "INSERT INTO finance(type, date, amount, category, description)" \
-                " VALUES (%s,%s,%s,%s,%s), ('income', '2023-04-21', 1000000, 'sale', 'phone');"
-        params = (self.type, self.date, self.amount, self.category, self.description)
-        result = self.execute_query(query, params)
+    @classmethod
+    def create_table(cls, dbmanager):
+        query = f'CREATE TABLE IF NOT EXISTS {cls.table_name} ('
+        query += ','.join([f'{col} {cls.columns[col]}' for col in cls.columns])
+        query += f');'
+        dbmanager.execute_query(query)
 
-    def read(self, conditions=None):
+    @classmethod
+    def read(cls, where=None):
+        query = f'SELECT * FROM {cls.table_name} WHERE {where}'
+        return DatabaseManager.execute_query(query, fetch=True)
+
+    @classmethod
+    def insert_data(cls, dbmanager, **kwargs):
+        query = f'INSERT INTO {cls.table_name} ('
+        query += ','.join(kwargs.keys())
+        query += ')'
+        query += 'VALUES ('
+        query += ','.join(kwargs.values())
+        query += f');'
+        dbmanager.execute_query(query)
+
+    def update(self, where=None):
         pass
+
+    def delete(self, where=None):
+        pass
+
+

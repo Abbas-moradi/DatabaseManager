@@ -9,6 +9,7 @@ class DatabaseManager:
         self.password = password
         self.host = host
         self.port = port
+        self.pool_size = pool_size
         self.pool = None
 
     def get_connection(self):
@@ -38,7 +39,7 @@ class DatabaseManager:
             cursor.execute(query, params)
             if fetch:
                 result = cursor.fetchall()
-                print(*result, sep='\n')
+                return result
             else:
                 result = None
             conn.commit()
@@ -76,12 +77,9 @@ class DatabaseManager:
             self.close_connection(conn)
 
 
-<<<<<<< HEAD
 customer = DatabaseManager('finance', 'postgres', '@bb@s1366')
-=======
-# customer = DatabaseManager('finance', 'postgres', 'insert your password')
->>>>>>> 11c9be1ebef589db021009feae0476d9247ccc6d
+
 # customer.get_connection()
 # customer.execute_query('''INSERT INTO finance(type, date, amount, category, description)
-#                         VALUES (%s,%s,%s,%s,%s)''', ("income", "2023-04-21", 1000000, "sale", "phone"), False)
+#                         VALUES (%s,%s,%s,%s,%s)''', ("income", "2023-03-21", 1600000, "salary", "reward"), False)
 # customer.execute_query('''DELETE FROM finance WHERE amount = 950000''', fetch=False)
