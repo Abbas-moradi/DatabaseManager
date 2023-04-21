@@ -76,7 +76,11 @@ class DatabaseManager:
             self.close_connection(conn)
 
 
+<<<<<<< HEAD
 customer = DatabaseManager('finance', 'postgres', '@bb@s1366')
+=======
+# customer = DatabaseManager('finance', 'postgres', 'insert your password')
+>>>>>>> 11c9be1ebef589db021009feae0476d9247ccc6d
 # customer.get_connection()
 # customer.execute_query('''INSERT INTO finance(type, date, amount, category, description)
 #                         VALUES (%s,%s,%s,%s,%s)''', ("income", "2023-04-21", 1000000, "sale", "phone"), False)
