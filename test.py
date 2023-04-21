@@ -5,7 +5,7 @@ from CRUD import Model
 db_config = {
     "dbname": "finance",
     "user": "postgres",
-    "password": "@bb@s1366"
+    "password": "password"
 }
 
 # Initialize the database manager
