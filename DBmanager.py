@@ -81,4 +81,4 @@ customer = DatabaseManager('finance', 'postgres', 'password')
 
 # customer.get_connection()
 # customer.execute_query('''INSERT INTO finance(type, date, amount, category, description)
-#                         VALUES (%s,%s,%s,%s,%s)''', ("income", "2023-03-21", 1600000, "salary", "reward"), False)
+#                         
