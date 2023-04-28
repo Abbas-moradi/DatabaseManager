@@ -80,5 +80,5 @@ class DatabaseManager:
 customer = DatabaseManager('finance', 'postgres', 'password')
 
 # customer.get_connection()
-# customer.execute_query('''INSERT INTO finance(type, date, amount, category, description)
+
 #                         
