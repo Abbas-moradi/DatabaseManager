@@ -78,5 +78,4 @@ class DatabaseManager:
 
 
 customer = DatabaseManager('finance', 'postgres', 'password')
-
-# customer.get_connection()                        
+                     
