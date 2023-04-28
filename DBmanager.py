@@ -77,7 +77,7 @@ class DatabaseManager:
             self.close_connection(conn)
 
 
-customer = DatabaseManager('finance', 'postgres', '@bb@s1366')
+customer = DatabaseManager('finance', 'postgres', 'password')
 
 # customer.get_connection()
 # customer.execute_query('''INSERT INTO finance(type, date, amount, category, description)
