@@ -9,7 +9,7 @@ db_config = {
 }
 
 # Initialize the database manager
-db_manager = DatabaseManager('finance', 'postgres', '@bb@s1366')
+db_manager = DatabaseManager('finance', 'postgres', 'password')
 
 
 class User(Model):
