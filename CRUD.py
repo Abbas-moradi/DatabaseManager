@@ -3,7 +3,6 @@ from abc import ABC
 from BaseCRUD import BaseCrud
 from DBmanager import DatabaseManager
 
-
 class Model:
     table_name = None
     columns = {}
